@@ -1,26 +1,25 @@
-while True :
-    a = input()
+import sys 
+while True:
     stack = []
-
-    if a == "." :
+    content = sys.stdin.readline()
+    if content == ".\n":
         break
-
-    for i in a :
+    for i in content:
         if i == '[' or i == '(' :
             stack.append(i)
-        elif i == ']' :
-            if len(stack) != 0 and stack[-1] == '[' :
-                stack.pop() # 맞으면 지워서 stack을 비워줌 0 = yes
-            else : 
-                stack.append(']')
+        if i == ")":
+            if len(stack) == 0 or stack[-1] != "(":
+                stack.append(i)
                 break
-        elif i == ')' :
-            if len(stack) != 0 and stack[-1] == '(' :
+            else:
                 stack.pop()
-            else :
-                stack.append(')')
+        if i == "]":
+            if len(stack) == 0 or stack[-1] != "[":
+                stack.append(i)
                 break
-    if len(stack) == 0 :
-        print('yes')
-    else :
-        print('no')
+            else:
+                stack.pop()
+    if len(stack) == 0:
+        print("yes")
+    else:
+        print("no")

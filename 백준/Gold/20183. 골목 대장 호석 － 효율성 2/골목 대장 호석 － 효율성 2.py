@@ -14,10 +14,11 @@ def dijkstra():
             new_weight = weight + info[0]
             max_weight = max(max_weight,info[0])
             if new_weight > C: continue
-            if distance[info[1]][0] <= max_weight:continue
-            distance[info[1]][0] = max_weight
-            distance[info[1]][1] = new_weight
-            heappush(heap_list,(new_weight,max_weight,info[1]))
+            if distance[info[1]][0] < max_weight:continue
+            if new_weight < distance[info[1]][1]:
+                distance[info[1]][0] = max_weight
+                distance[info[1]][1] = min(distance[info[1]][1],new_weight)
+                heappush(heap_list,(new_weight,max_weight,info[1]))
     return distance[B][0] if distance[B][1] != float("inf") else -1
                 
 path = {}

@@ -1,6 +1,6 @@
 from heapq import heappush, heappop
-
-N,M,A,B,C = map(int,input().split())
+import sys
+N,M,A,B,C = map(int,sys.stdin.readline().split())
 
 def dijkstra():
     heap_list = []
@@ -25,7 +25,7 @@ for i in range(1,N+1):
     path[i] = []
 distance = [[float("inf"),float("inf")] for _ in range(N+1)]
 for _ in range(M):
-    u,v,w = map(int,input().split())
+    u,v,w = map(int,sys.stdin.readline().split())
     path[u].append([w,v])
     path[v].append([w,u])
 
